@@ -1,4 +1,3 @@
-// src/components/NoteForm.tsx
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNote } from '../store/notesSlice';
@@ -34,7 +33,7 @@ const NoteForm: React.FC = () => {
           className="w-full mb-2"
           placeholder="Content"
           value={content}
-          onChange={(e: { target: { value: React.SetStateAction<string>; }; }) => setContent(e.target.value)}
+          onChange={(e) => setContent(e.target.value)}
         />
         <Button type="submit" className="mt-2">Add Note</Button>
       </form>

@@ -1,8 +1,6 @@
-// src/components/NoteCard.tsx
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Note } from '../store/notesSlice';
-import { updateNote, deleteNote } from '../store/notesSlice';
+import { Note, updateNote, deleteNote } from '../store/notesSlice';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Input } from './ui/input';

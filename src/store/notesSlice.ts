@@ -1,4 +1,3 @@
-// src/store/notesSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface Note {
@@ -7,7 +6,7 @@ export interface Note {
   content: string;
 }
 
-interface NotesState {
+export interface NotesState {
   notes: Note[];
 }
 
