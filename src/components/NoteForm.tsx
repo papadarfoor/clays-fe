@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { addNote } from '../store/notesSlice';
 import { Button } from './ui/button';
 import { Card } from './ui/card';
 import { Input } from './ui/input';
@@ -9,12 +7,12 @@ import { Textarea } from './ui/textarea';
 const NoteForm: React.FC = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const newNote = { id: Date.now(), title, content };
-    dispatch(addNote(newNote));
+    // dispatch(addNote(newNote));
     setTitle('');
     setContent('');
   };
