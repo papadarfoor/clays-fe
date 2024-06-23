@@ -1,30 +1,76 @@
-# React + TypeScript + Vite
+# Clay's Note Taking App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Clay's Note Taking App is a web application designed to help users manage and organize their notes effectively. This project utilizes React for the frontend, providing a seamless user experience for creating, editing, and deleting notes.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Create Notes**: Easily create new notes with a title and content.
+- **Edit Notes**: Modify existing notes directly from the interface.
+- **Delete Notes**: Remove notes when no longer needed.
+- **View Notes**: View detailed content of each note in a dialog window.
+- **Validation**: Validate user input to ensure data integrity.
+- **Responsive Design**: Ensure compatibility and usability across various devices and screen sizes.
 
-## Expanding the ESLint configuration
+## Technologies Used
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Frontend**: React, React Query, TypeScript
+- **Styling**: Tailwind CSS, Shadcn
+- **State Management**: React Query for managing remote data fetching and caching.
+- **API Requests**: Axios for making HTTP requests to the Django backend.
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+1. **Clone the repository:**
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+   ```bash
+   git clone https://github.com/papadarfoor/clays-fe.git
+   cd clays-fe
+
+2. **Install dependencies:**
+
+    ```bash
+ 
+    npm install
+
+    ```
+
+3. **Start the development server:**
+
+    ```bash
+    npm start
+    ```
+4. **Access the application:**
+
+   Open a web browser and go to [http://localhost:3000](http://localhost:3000)
+
+   You can also run this Django application using Docker for easier setup and environment isolation.
+
+#### Prerequisites
+
+- Docker: [Install Docker](https://docs.docker.com/get-docker/)
+
+#### Setup Instructions with Docker
+
+1. **Clone the repository:**
+
+    ```bash
+    git clone https://github.com/papadarfoor/clays-fe.git
+    cd clays-fe
+    ```
+
+2. **Build the Docker image:**
+
+    ```bash
+    docker build -t clays-fe .
+    ```
+
+3. **Run the Docker container:**
+
+    ```bash
+    docker run -p 3000:3000 clays-fe
+    ```
+
+4. **Access the application:**
+
+   Open a web browser and go to [http://localhost:5173](http://localhost:5173)
+
