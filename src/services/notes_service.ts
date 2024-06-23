@@ -9,5 +9,19 @@ export class NotesService {
     return response.data.map((element:Record<string,any>)=>new NotesModel(element));
   };
 
+  async createNote(noteData: { title: string; content: string }): Promise<NotesModel> {
+    const response = await api.post('/notes/', noteData);
+    return new NotesModel(response.data);
+  }
+
+  async editNote(id: number, noteData: { title: string; content: string }): Promise<NotesModel> {
+    const response = await api.put(`/notes/${id}/`, noteData);
+    return new NotesModel(response.data);
+  }
+
+  async deleteNote(id: number): Promise<void> {
+    await api.delete(`/notes/${id}/`);
+  }
+
 }
 

@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import { useMutation, useQueryClient } from 'react-query';
-import axios from 'axios';
-import { Note } from '../types'; // Adjust to your Note type definition
+import { useEditNote } from '../hooks/edit_note_hook';
+import { useDeleteNote } from '../hooks/delete_note_hook';
+import { Note } from '../types';
+import { Card } from './ui/card';
+import { Input } from './ui/input';
+import { Textarea } from './ui/textarea';
+import { Button } from './ui/button';
 
 interface NoteCardProps {
   note: Note;
@@ -10,64 +14,49 @@ interface NoteCardProps {
 const NoteCard: React.FC<NoteCardProps> = ({ note }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedNote, setEditedNote] = useState(note);
-  const queryClient = useQueryClient();
 
-  const { mutate: editNote } = useMutation(
-    (updatedNote: Note) => axios.put(`/api/notes/${note.id}/`, updatedNote),
-    {
-      onSuccess: () => {
-        queryClient.invalidateQueries('notes'); // Invalidate 'notes' query to refetch data
-        setIsEditing(false);
-      },
-    }
-  );
+  const editNote = useEditNote();
+  const deleteNote = useDeleteNote();
 
   const handleEdit = () => {
-    editNote(editedNote);
+    editNote.mutate(editedNote, {
+      onSuccess: () => {
+        setIsEditing(false);
+      },
+    });
+  };
+
+  const handleDelete = () => {
+    deleteNote.mutate(note.id);
   };
 
   return (
-    <div className="border rounded shadow p-4">
+    <Card className="p-4 border rounded shadow">
       {isEditing ? (
         <div>
-          <input
+          <Input 
+            className="w-full mb-2"
             type="text"
             value={editedNote.title}
             onChange={(e) => setEditedNote({ ...editedNote, title: e.target.value })}
-            className="w-full mb-2 px-3 py-2 border rounded"
           />
-          <textarea
+          <Textarea 
+            className="w-full mb-2"
             value={editedNote.content}
             onChange={(e) => setEditedNote({ ...editedNote, content: e.target.value })}
-            className="w-full mb-2 px-3 py-2 border rounded"
           />
-          <button onClick={handleEdit} className="mr-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-            Save
-          </button>
-          <button onClick={() => setIsEditing(false)} className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded">
-            Cancel
-          </button>
+          <Button onClick={handleEdit} className="mr-2">Save</Button>
+          <Button onClick={() => setIsEditing(false)} variant="secondary">Cancel</Button>
         </div>
       ) : (
         <div>
           <h2 className="text-xl font-bold">{note.title}</h2>
           <p>{note.content}</p>
-          <button onClick={() => setIsEditing(true)} className="mr-2 bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
-            Edit
-          </button>
-          <button
-            onClick={() => {
-              axios.delete(`/api/notes/${note.id}/`).then(() => {
-                queryClient.invalidateQueries('notes'); // Invalidate 'notes' query to refetch data
-              });
-            }}
-            className="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded"
-          >
-            Delete
-          </button>
+          <Button onClick={() => setIsEditing(true)} variant="outline" className="mr-2">Edit</Button>
+          <Button onClick={handleDelete}>Delete</Button>
         </div>
       )}
-    </div>
+    </Card>
   );
 };
 
