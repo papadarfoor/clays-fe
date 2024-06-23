@@ -8,7 +8,6 @@ import { Card } from './ui/card';
 import { Input } from './ui/input';
 import { Textarea } from './ui/textarea';
 
-// Validation Schema
 const NoteSchema = Yup.object().shape({
   title: Yup.string().max(50, 'Title is too long!').required('Title is required'),
   content: Yup.string().max(500, 'Content is too long!').required('Content is required'),

@@ -9,6 +9,11 @@ export class NotesService {
     return response.data.map((element:Record<string,any>)=>new NotesModel(element));
   };
 
+  async fetchNoteById(id: number):Promise<NotesModel> {
+    const response = await api.get(`/notes/${id}/`);
+    return new NotesModel(response.data);
+  };
+
   async createNote(noteData: { title: string; content: string }): Promise<NotesModel> {
     const response = await api.post('/notes/', noteData);
     return new NotesModel(response.data);
