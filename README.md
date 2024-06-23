@@ -41,7 +41,7 @@ Clay's Note Taking App is a web application designed to help users manage and or
     ```
 4. **Access the application:**
 
-   Open a web browser and go to [http://localhost:3000](http://localhost:3000)
+   Open a web browser and go to [http://localhost:5173](http://localhost:5173)
 
    You can also run this Django application using Docker for easier setup and environment isolation.
 
@@ -67,7 +67,7 @@ Clay's Note Taking App is a web application designed to help users manage and or
 3. **Run the Docker container:**
 
     ```bash
-    docker run -p 3000:3000 clays-fe
+    docker run -p 5173:5173 clays-fe
     ```
 
 4. **Access the application:**
